@@ -19,14 +19,39 @@ export const getTodoByID = (id: number) => {
 
 };
 
-export const postTodo = (todo: Todo) => {
-
+export const postTodo = async (todo: Todo) => {
+    try{
+        let response = await axios.post(base_url, todo);
+        console.log("Post underway");
+        console.log("Response: ", response);
+        console.log("Data: ", response.data);
+        return response.data;
+    } catch(error){
+        console.log("Post failed");
+        return error;
+    }
 };
 
-export const updateTodoById = (todo: Todo) => {
-
+export const updateTodoById = async (todo: Todo) => {
+    try{
+        let response = await axios.post(`${base_url}/${todo.id}`, todo);
+        console.log("Update underway");
+        console.log("Response: ", response);
+        console.log("Data: ", response.data);
+        return response.data;
+    } catch(error){
+        console.log("Update failed");
+        return error;
+    }
 }
 
-export const deleteTodoById = (id: number) => {
-
+export const deleteTodoById = async (id: number) => {
+    try{
+        let response = await axios.delete(`${base_url}/${id}`);
+        console.log("Delete underway");
+        console.log("Response: ", response);
+    } catch(error){
+        console.log("Delete failed");
+        return error;
+    }
 }

@@ -1,20 +1,29 @@
 import React from 'react';
 import { Input, Button, Form, Switch } from 'antd';
+import styles from './styles.module.css';
+import Todo from "../services/Todo";
+import {postTodo} from "../services/todoService";
 
 const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    wrapperCol: { span: 8 },
 };
 const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
+    wrapperCol: { offset: 8, span: 8 },
 };
 
+interface TodoFormInterface {
+    reload(): void;
+}
 
-const TodoForm = () => {
+
+const TodoForm = (props: TodoFormInterface) => {
     const [form] = Form.useForm();
 
     const onFinish = (values: any) => {
         console.log(values);
+        postTodo(values).then(() => props.reload());
+
     };
 
     const onReset = () => {
@@ -36,7 +45,7 @@ const TodoForm = () => {
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
-                <Button htmlType="button" onClick={onReset}>
+                <Button htmlType="button" onClick={onReset} className={styles.button}>
                     Reset
                 </Button>
             </Form.Item>
