@@ -3,6 +3,7 @@ import Todo from "./Todo";
 
 const base_url = 'https://nickb-todos-app-for-woz.herokuapp.com/api/todos'
 
+
 export const getTodos = async () => {
     try{
         let response = await axios.get(base_url);
@@ -34,7 +35,7 @@ export const postTodo = async (todo: Todo) => {
 
 export const updateTodoById = async (todo: Todo) => {
     try{
-        let response = await axios.post(`${base_url}/${todo.id}`, todo);
+        let response = await axios.put(`${base_url}/${todo.id}`, todo);
         console.log("Update underway");
         console.log("Response: ", response);
         console.log("Data: ", response.data);
