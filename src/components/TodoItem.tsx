@@ -65,7 +65,7 @@ class TodoItem extends Component<TodoProp, TodoState> {
                 <Card title={this.props.todo.title} className={styles.todoCard}>
                     <p>Description:</p>
                     <p>{this.props.todo.description}</p>
-                    <p>Completed <Checkbox defaultChecked={this.props.todo.complete} disabled/></p>
+                    <p>Completed <Checkbox disabled checked={this.props.todo.complete}/></p>
                     <Button type="primary" onClick={this.handleUpdate}>
                         Update
                     </Button>
